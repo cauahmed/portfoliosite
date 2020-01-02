@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div id="home" class="banner-area section-padding">
+    <div class="bg-overlay black"></div>
+    <div class="containter">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="welcome-text">
+                    <div class="name-area wow fadeInDown" data-wow-delay="0.2s">Hello, my name is Asif Ahmed</div>
+                    <h1 class="wow fadeInDown" data-wow-delay="0.4s">Welcome to my portfolio site</h1>
+                    <a href="#about" class="my-btn-1 wow fadeInDown" data-wow-delay="0.6s">About me</a>
+                    <a href="#contact" class="my-btn-2 wow fadeInDown" data-wow-delay="0.8s">Get in touch</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="about" class="about-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-sn-8 col-xs-12 wow fadeInLeft" data-wow-delay="0.3s">
+                <div class="about-left">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="line"></div>
+                    <h4>{{ about.short_description }}</h4>
+                    <p>{{ about.description }}</p>
+                    <a href="media/about/Resume_final_developer_2.0.pdf" download>Download CV&nbsp;<i class="fa fa-download"></i></a>
+                </div>
+            </div>
+            <div class="col-md-5 visible-md visible-lg wow fadeInDown" data-wow-delay="0.6s">
+                <div class="profile">
+                    <img src="{{ about.image.url }}" alt="Profile image" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="skills" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header text-center">
+                    <h2>Skills</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for skill in skills %}
+
+                <div class="col-md-4 col-sm-4">
+                    <div class="single-skill wow fadeInDown" data-wow-delay="0.3s">
+                        <i class="icon icon-wallet"></i>
+                        <h2>{{ skill.name }}</h2>
+                        <p>{{ skill.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="projects" class="portfolio-area section-padding">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header">
+                    <h2>My Projects</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding">
+                    <div class="gallery-items">
+                        <a class="view img" href="{{ project.image.url }}">
+                            <img src="{{ project.image.url }}" alt="project image">
+                        </a>
+
+                        <div class="gallery-text">
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#{{ project.project_id }}">{{ project.title }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="{{ project.project_id }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">{{ project.title }}</h4>
+                        </div>
+                        <div class="modal-body">
+                          <p>{{ project.description }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ project.project_link }}" class="btn btn-info" role="button">Go to project</a>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="clients" class="portfolio-area section-padding">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header">
+                    <h2>Clients</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for client in clients %}
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padding">
+                    <div class="gallery-items">
+                        <a class="view img" href="{{ client.image.url }}">
+                            <img src="{{ client.image.url }}" alt="client image">
+                        </a>
+
+                        <div class="gallery-text">
+                            <h2>{{ client.title }}</h2>
+                            <p>{{ client.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="invitation-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="single-invite text-center">
+                <h2>Do you have any project that needs to be completed?</h2>
+                <p>For any queries regarding a project you need help with, please dont hesitate to get in touch</p>
+                <a href="#contact" class="my-btn-3">Get started</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="contact-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header text-center">
+                    <h2>Contact Me</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 box-contact-form">
+                
+                <form id="contact-form" method="post" action="">
+                    {% csrf_token %}
+
+                    <div class="messages"></div>
+
+                    <div class="controls">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group wow fadeInDoswn" data-wow-delay="0.2s">
+                                    <input id="name" type="text" name="fullname" class="form-control"
+                                           placeholder="Enter full name *" required="required"
+                                           data-error="Fullname is required.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group wow fadeInDown" data-wow-delay="0.4s">
+                                    <input id="email" type="email" name="email" class="form-control"
+                                           placeholder="Enter your email *" required="required"
+                                           data-error="Valid email is required.">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group wow fadeInUp" data-wow-delay="0.6s">
+                                    <textarea id="message" name="message" class="form-control"
+                                              placeholder="Your Message *" rows="4" required="required"
+                                              data-error="Leave a message for me"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-send" value="">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
