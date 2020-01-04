@@ -28,6 +28,7 @@
                 <li><a class="smooth-menu" href="#about">About</a></li>
                 <li><a class="smooth-menu" href="#skills">Skills</a></li>
                 <li><a class="smooth-menu" href="#projects">Projects</a></li>
+                <li><a class="smooth-menu" href="#certifications">Certifications</a></li>
                 <li><a class="smooth-menu" href="#clients">Clients</a></li>
                 <li><a class="smooth-menu" href="#contact">Contact</a></li>
             </ul>
@@ -37,14 +38,13 @@
 
 {% block content %}{% endblock %}
 
-<div class="footer-area">
+<div class="footer-area" id ="socials">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-linkedin"></a>
-                <a href="#" class="fa fa-android"></a>
-                <a href="#" class="fa fa-google"></a>
+                <h1 class="leadingtext" style="font-size: 30px;color: white;">Connect on Social Media</h1>
+                <a href="https://www.facebook.com/chowdhuryasifuddin.ahmedsium" class="fa fa-facebook" style="font-size:50px;font-weight: 900;padding-right: 20px;"></a>
+                <a href="https://www.linkedin.com/in/chowasifuddinahmed/" class="fa fa-linkedin" style="font-size:50px;font-weight: 900;"></a>
             </div>
         </div>
     </div>
@@ -61,8 +61,6 @@ $(document).ready(function(){
 // when the form is submitted
 $(document).on('submit','#contact-form',function(e){
 
-
-        // POST values in the background to the script URL
         $.ajax({
             type: "POST",
             url: 'contact/send/',
@@ -74,23 +72,9 @@ $(document).on('submit','#contact-form',function(e){
             },
             success: function (data)
             {
-                // data = JSON object that contact.php returns
-
-                // we recieve the type of the message: success x danger and apply it to the 
-                //var messageAlert = 'alert-' + data.type;
-                //var messageText = data.message;
-
-                // let's compose Bootstrap alert box HTML
-                //var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                
-                // If we have messageAlert and messageText
-                //if (messageAlert && messageText) {
-                    // inject the alert to .messages div in our form
-                    //$('#contact-form').find('.messages').html(alertBox);
-                    // empty the form
                     alert("Message sent successfully!");
                     $('#contact-form')[0].reset();
-                //}
+                    
             }
         });
         return false;

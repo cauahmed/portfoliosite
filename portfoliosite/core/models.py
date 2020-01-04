@@ -49,3 +49,13 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.fullname
+        
+#Cetifications Model
+class Certification(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(verbose_name="Certificate description")
+    image = models.ImageField(upload_to="certs", default="default.png")
+    attachment_address = models.TextField(verbose_name="Attachment Address")
+
+    def __str__(self):
+        return self.title

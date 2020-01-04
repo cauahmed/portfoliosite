@@ -16,6 +16,7 @@ class LandingTemplateView(TemplateView):
         context['skills'] = Skill.objects.all()
         context['projects'] = CompletedProject.objects.all()
         context['clients'] = Client.objects.all()
+        context['certifications'] = Certification.objects.all()
         return context
 
 
