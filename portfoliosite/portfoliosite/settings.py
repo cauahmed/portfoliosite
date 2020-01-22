@@ -28,10 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-EMAIL_HOST = 'smtp.gmail.com'
+SENDGRID_API_KEY = os.getenv('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')_
+
+EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'asif000473@gmail.com'
-EMAIL_HOST_PASSWORD = 'SiumAus836596'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
