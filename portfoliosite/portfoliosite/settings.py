@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
-SENDGRID_API_KEY = os.getenv('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')_
+SENDGRID_API_KEY = os.getenv('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')
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
